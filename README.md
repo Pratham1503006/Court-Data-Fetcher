@@ -35,11 +35,17 @@ A web application that enables users to search Delhi High Court case metadata an
 
 Watch a 5-minute screen capture demonstrating:
 
+https://github.com/user-attachments/assets/67d614df-1cba-459f-a902-e11832d0ebd0
+
+
+
 1. Application launch  
 2. Case search form interaction  
 3. CAPTCHA solving  
-4. Results display and PDF downloads  
-5. Query history view  
+4. Results display  
+5. Query history view
+
+
 
 ---
 
