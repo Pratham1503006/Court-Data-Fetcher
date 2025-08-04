@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search History - Court Data Fetcher</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='animations.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>📋 Search History</h1>
+    
+    {% if history %}
+      <table>
+        <thead>
+          <tr>
+            <th>🆔 ID</th>
+            <th>📂 Type</th>
+            <th>🔢 Number</th>
+            <th>📅 Year</th>
+            <th>⏰ Timestamp</th>
+            <th>📊 Status</th>
+            <th>👤 Petitioner</th>
+            <th>⚖️ Respondent</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in history %}
+          <tr>
+            <td>{{ r[0] }}</td>
+            <td>{{ r[1] }}</td>
+            <td>{{ r[2] }}</td>
+            <td>{{ r[3] }}</td>
+            <td>{{ r[4] }}</td>
+            <td>{{ r[5] }}</td>
+            <td>{{ r[6] or 'N/A' }}</td>
+            <td>{{ r[7] or 'N/A' }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="result-item" style="text-align: center;">
+        <p><strong>No search history found.</strong></p>
+        <p>Start by performing your first case search!</p>
+      </div>
+    {% endif %}
+    
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="{{ url_for('index') }}" class="btn">🔍 New Search</a>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

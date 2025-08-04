@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Court Data Fetcher</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='animations.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Delhi High Court Case Search</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for cat,msg in messages %}
+        <div class="alert alert-{{cat}}">{{ msg }}</div>
+      {% endfor %}
+    {% endwith %}
+    
+    <form method="POST" action="{{ url_for('search_case') }}">
+      <label for="case_type">Case Type:</label>
+      <select name="case_type" id="case_type" required>
+        <option value="">--Select Case Type--</option>
+        {% for ct in case_types %}<option value="{{ ct }}">{{ ct }}</option>{% endfor %}
+      </select>
+      
+      <label for="case_number">Case Number:</label>
+      <input type="text" name="case_number" id="case_number" placeholder="Enter case number" required>
+      
+      <label for="filing_year">Filing Year:</label>
+      <select name="filing_year" id="filing_year" required>
+        <option value="">--Select Year--</option>
+        {% for y in years %}<option value="{{ y }}">{{ y }}</option>{% endfor %}
+      </select>
+      
+      <button type="submit">🔍 Search Case</button>
+    </form>
+    
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="{{ url_for('history') }}" class="btn">📋 View Search History</a>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Results - Court Data Fetcher</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='animations.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>📄 Case Information</h1>
+    
+    <div class="result-item">
+      <p><strong>👤 Petitioner:</strong> {{ data.petitioner }}</p>
+    </div>
+    
+    <div class="result-item">
+      <p><strong>⚖️ Respondent:</strong> {{ data.respondent }}</p>
+    </div>
+    
+    <div class="result-item">
+      <p><strong>📅 Filing Date:</strong> {{ data.filing_date or 'N/A' }}</p>
+    </div>
+    
+    <div class="result-item">
+      <p><strong>📆 Next Hearing:</strong> {{ data.next_hearing_date or 'N/A' }}</p>
+    </div>
+    
+    <div class="result-item">
+      <p><strong>📊 Status:</strong> {{ data.status }}</p>
+    </div>
+    
+    {% if data.documents %}
+      <h2>📎 Documents</h2>
+      <ul>
+        {% for d in data.documents %}
+          <li><a href="{{ d.url }}" target="_blank">{{ d.text or d.type }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="{{ url_for('index') }}" class="btn">🔍 New Search</a>
+      <a href="{{ url_for('history') }}" class="btn">📋 View History</a>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
